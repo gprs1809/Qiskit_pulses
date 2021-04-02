@@ -399,13 +399,13 @@ print(backend_defaults)
 ```
 
     <PulseDefaults(<InstructionScheduleMap(1Q instructions:
-      q0: {'x', 'u1', 'id', 'rz', 'measure', 'sx', 'u2', 'u3'}
-      q1: {'x', 'u1', 'id', 'rz', 'measure', 'sx', 'u2', 'u3'}
-      q2: {'x', 'u1', 'id', 'rz', 'measure', 'sx', 'u2', 'u3'}
-      q3: {'x', 'u1', 'id', 'rz', 'measure', 'sx', 'u2', 'u3'}
-      q4: {'x', 'u1', 'id', 'rz', 'measure', 'sx', 'u2', 'u3'}
-      q5: {'x', 'u1', 'id', 'rz', 'measure', 'sx', 'u2', 'u3'}
-      q6: {'x', 'u1', 'id', 'rz', 'measure', 'sx', 'u2', 'u3'}
+      q0: {'x', 'u2', 'rz', 'id', 'sx', 'u3', 'u1', 'measure'}
+      q1: {'x', 'u2', 'rz', 'id', 'sx', 'u3', 'u1', 'measure'}
+      q2: {'x', 'u2', 'rz', 'id', 'sx', 'u3', 'u1', 'measure'}
+      q3: {'x', 'u2', 'rz', 'id', 'sx', 'u3', 'u1', 'measure'}
+      q4: {'x', 'u2', 'rz', 'id', 'sx', 'u3', 'u1', 'measure'}
+      q5: {'x', 'u2', 'rz', 'id', 'sx', 'u3', 'u1', 'measure'}
+      q6: {'x', 'u2', 'rz', 'id', 'sx', 'u3', 'u1', 'measure'}
     Multi qubit instructions:
       (0, 1): {'cx'}
       (1, 0): {'cx'}
@@ -443,75 +443,144 @@ print(Q1_GHz, Q3_GHz)
 
 
 ```python
-# look for qubit 1 + other qubit CX instructions
+# look for qubit 3 as target + other qubit as control in CX instructions
 
-control_1 = 1
+target_3 = 3
 other_qubits = [0,2,4,5,6]
 partners_for_control1 = []
 
 for oq in other_qubits:
-    inst_control1 = cx_pulse_instructions(control_1,oq)
-    inst_target1 = cx_pulse_instructions(oq,control_1)
-    print("\ncontrol_1, target",oq)
-    print(inst_control1)
-    print(oq, "control, target 1")
-    print(inst_target1)
+    target_3_c = cx_pulse_instructions(target_3,oq)
+    target_3_t = cx_pulse_instructions(oq,target_3)
+    print("\ntarget_3 as target with control",oq)
+    print(target_3_t)
+    print("\ntarget_3 as control with target",oq)
+    print(target_3_c)
 ```
 
-    
-    control_1, target 0
-    Schedule((0, ShiftPhase(1.5707963267948966, DriveChannel(1))), (0, ShiftPhase(1.5707963267948966, ControlChannel(0))), (0, ShiftPhase(1.5707963267948966, ControlChannel(4))), (0, ShiftPhase(1.5707963267948966, ControlChannel(5))), (0, Play(Drag(duration=160, amp=(0.06609226827109388+0.000912373667100603j), sigma=40, beta=-0.2491118115104453), DriveChannel(0))), (0, Play(Drag(duration=160, amp=(-3.3403554768156836e-17-0.18184048272211326j), sigma=40, beta=-0.6320135312613582), DriveChannel(1))), (160, Play(GaussianSquare(duration=880, amp=(0.023928400085393722+0.0005922800775212528j), sigma=64, width=624), DriveChannel(0))), (160, Play(GaussianSquare(duration=880, amp=(0.09465381956379383+0.20045650097293158j), sigma=64, width=624), ControlChannel(1))), (1040, Play(Drag(duration=160, amp=(0.18184048272211326+0j), sigma=40, beta=-0.6320135312613582), DriveChannel(1))), (1200, Play(GaussianSquare(duration=880, amp=(-0.023928400085393722-0.0005922800775212499j), sigma=64, width=624), DriveChannel(0))), (1200, Play(GaussianSquare(duration=880, amp=(-0.09465381956379386-0.20045650097293158j), sigma=64, width=624), ControlChannel(1))), name="cx")
-    0 control, target 1
-    Schedule((0, ShiftPhase(-3.141592653589793, DriveChannel(0))), (0, ShiftPhase(-1.5707963267948966, DriveChannel(1))), (0, ShiftPhase(-1.5707963267948966, ControlChannel(0))), (0, ShiftPhase(-3.141592653589793, ControlChannel(1))), (0, ShiftPhase(-1.5707963267948966, ControlChannel(4))), (0, ShiftPhase(-1.5707963267948966, ControlChannel(5))), (0, Play(Drag(duration=160, amp=(-0.0009123736671005992+0.06609226827109388j), sigma=40, beta=-0.2491118115104453), DriveChannel(0))), (0, Play(Drag(duration=160, amp=(0.09088794201100041+0.0015595319821180014j), sigma=40, beta=-0.5674364342099053), DriveChannel(1))), (160, Play(GaussianSquare(duration=880, amp=(0.023928400085393722+0.0005922800775212528j), sigma=64, width=624), DriveChannel(0))), (160, Play(GaussianSquare(duration=880, amp=(0.09465381956379383+0.20045650097293158j), sigma=64, width=624), ControlChannel(1))), (1040, Play(Drag(duration=160, amp=(0.18184048272211326+0j), sigma=40, beta=-0.6320135312613582), DriveChannel(1))), (1200, Play(GaussianSquare(duration=880, amp=(-0.023928400085393722-0.0005922800775212499j), sigma=64, width=624), DriveChannel(0))), (1200, Play(GaussianSquare(duration=880, amp=(-0.09465381956379386-0.20045650097293158j), sigma=64, width=624), ControlChannel(1))), (2080, ShiftPhase(-1.5707963267948966, DriveChannel(0))), (2080, ShiftPhase(-1.5707963267948966, ControlChannel(1))), (2080, Play(Drag(duration=160, amp=(0.06609226827109388+0.000912373667100603j), sigma=40, beta=-0.2491118115104453), DriveChannel(0))), (2080, Play(Drag(duration=160, amp=(0.0015595319821180005-0.09088794201100041j), sigma=40, beta=-0.5674364342099053), DriveChannel(1))), name="cx")
-    
-    control_1, target 2
-    Schedule((0, ShiftPhase(1.5707963267948966, DriveChannel(1))), (0, ShiftPhase(1.5707963267948966, ControlChannel(0))), (0, ShiftPhase(1.5707963267948966, ControlChannel(4))), (0, ShiftPhase(1.5707963267948966, ControlChannel(5))), (0, Play(Drag(duration=160, amp=(-3.3403554768156836e-17-0.18184048272211326j), sigma=40, beta=-0.6320135312613582), DriveChannel(1))), (0, Play(Drag(duration=160, amp=(0.06708220145965474+0.0015026466962042638j), sigma=40, beta=-0.9695713928943847), DriveChannel(2))), (160, Play(GaussianSquare(duration=736, amp=(0.0312879794475106+0.0011439354463372426j), sigma=64, width=480), DriveChannel(2))), (160, Play(GaussianSquare(duration=736, amp=(0.7313978451139508+0.35439671875681317j), sigma=64, width=480), ControlChannel(2))), (896, Play(Drag(duration=160, amp=(0.18184048272211326+0j), sigma=40, beta=-0.6320135312613582), DriveChannel(1))), (1056, Play(GaussianSquare(duration=736, amp=(-0.0312879794475106-0.0011439354463372387j), sigma=64, width=480), DriveChannel(2))), (1056, Play(GaussianSquare(duration=736, amp=(-0.7313978451139508-0.35439671875681306j), sigma=64, width=480), ControlChannel(2))), name="cx")
-    2 control, target 1
-    Schedule((0, ShiftPhase(-1.5707963267948966, DriveChannel(1))), (0, ShiftPhase(-3.141592653589793, DriveChannel(2))), (0, ShiftPhase(-1.5707963267948966, ControlChannel(0))), (0, ShiftPhase(-3.141592653589793, ControlChannel(2))), (0, ShiftPhase(-1.5707963267948966, ControlChannel(4))), (0, ShiftPhase(-1.5707963267948966, ControlChannel(5))), (0, Play(Drag(duration=160, amp=(0.09088794201100041+0.0015595319821180014j), sigma=40, beta=-0.5674364342099053), DriveChannel(1))), (0, Play(Drag(duration=160, amp=(-0.0015026466962042666+0.06708220145965474j), sigma=40, beta=-0.9695713928943847), DriveChannel(2))), (160, Play(GaussianSquare(duration=736, amp=(0.0312879794475106+0.0011439354463372426j), sigma=64, width=480), DriveChannel(2))), (160, Play(GaussianSquare(duration=736, amp=(0.7313978451139508+0.35439671875681317j), sigma=64, width=480), ControlChannel(2))), (896, Play(Drag(duration=160, amp=(0.18184048272211326+0j), sigma=40, beta=-0.6320135312613582), DriveChannel(1))), (1056, Play(GaussianSquare(duration=736, amp=(-0.0312879794475106-0.0011439354463372387j), sigma=64, width=480), DriveChannel(2))), (1056, Play(GaussianSquare(duration=736, amp=(-0.7313978451139508-0.35439671875681306j), sigma=64, width=480), ControlChannel(2))), (1792, ShiftPhase(-1.5707963267948966, DriveChannel(2))), (1792, ShiftPhase(-1.5707963267948966, ControlChannel(2))), (1792, Play(Drag(duration=160, amp=(0.0015595319821180005-0.09088794201100041j), sigma=40, beta=-0.5674364342099053), DriveChannel(1))), (1792, Play(Drag(duration=160, amp=(0.06708220145965474+0.0015026466962042638j), sigma=40, beta=-0.9695713928943847), DriveChannel(2))), name="cx")
     Qubit pair has no direct cross resonance!
     Qubit pair has no direct cross resonance!
     
-    control_1, target 4
+    target_3 as target with control 0
     None
-    4 control, target 1
+    
+    target_3 as control with target 0
     None
     Qubit pair has no direct cross resonance!
     Qubit pair has no direct cross resonance!
     
-    control_1, target 5
+    target_3 as target with control 2
     None
-    5 control, target 1
+    
+    target_3 as control with target 2
     None
     Qubit pair has no direct cross resonance!
     Qubit pair has no direct cross resonance!
     
-    control_1, target 6
+    target_3 as target with control 4
     None
-    6 control, target 1
+    
+    target_3 as control with target 4
+    None
+    
+    target_3 as target with control 5
+    Schedule((0, ShiftPhase(1.5707963267948966, DriveChannel(5))), (0, ShiftPhase(1.5707963267948966, ControlChannel(11))), (0, ShiftPhase(1.5707963267948966, ControlChannel(6))), (0, ShiftPhase(1.5707963267948966, ControlChannel(7))), (0, Play(Drag(duration=160, amp=(0.06110771919119891+0.0010527529746011833j), sigma=40, beta=-1.506044845111048), DriveChannel(3))), (0, Play(Drag(duration=160, amp=(-3.221456669098321e-17-0.17536793309664062j), sigma=40, beta=0.49130811784544975), DriveChannel(5))), (160, Play(GaussianSquare(duration=736, amp=(0.029056132593547085+0.001524840540069849j), sigma=64, width=480), DriveChannel(3))), (160, Play(GaussianSquare(duration=736, amp=(0.2038155899362049-0.09386625089604639j), sigma=64, width=480), ControlChannel(8))), (896, Play(Drag(duration=160, amp=(0.17536793309664062+0j), sigma=40, beta=0.49130811784544975), DriveChannel(5))), (1056, Play(GaussianSquare(duration=736, amp=(-0.029056132593547085-0.0015248405400698456j), sigma=64, width=480), DriveChannel(3))), (1056, Play(GaussianSquare(duration=736, amp=(-0.2038155899362049+0.09386625089604642j), sigma=64, width=480), ControlChannel(8))), name="cx")
+    
+    target_3 as control with target 5
+    Schedule((0, ShiftPhase(-3.141592653589793, DriveChannel(3))), (0, ShiftPhase(-1.5707963267948966, DriveChannel(5))), (0, ShiftPhase(-1.5707963267948966, ControlChannel(11))), (0, ShiftPhase(-3.141592653589793, ControlChannel(3))), (0, ShiftPhase(-1.5707963267948966, ControlChannel(6))), (0, ShiftPhase(-1.5707963267948966, ControlChannel(7))), (0, ShiftPhase(-3.141592653589793, ControlChannel(8))), (0, Play(Drag(duration=160, amp=(-0.0010527529746011829+0.06110771919119891j), sigma=40, beta=-1.506044845111048), DriveChannel(3))), (0, Play(Drag(duration=160, amp=(0.08769498979839149+0.0007685896709848757j), sigma=40, beta=0.5491988060501364), DriveChannel(5))), (160, Play(GaussianSquare(duration=736, amp=(0.029056132593547085+0.001524840540069849j), sigma=64, width=480), DriveChannel(3))), (160, Play(GaussianSquare(duration=736, amp=(0.2038155899362049-0.09386625089604639j), sigma=64, width=480), ControlChannel(8))), (896, Play(Drag(duration=160, amp=(0.17536793309664062+0j), sigma=40, beta=0.49130811784544975), DriveChannel(5))), (1056, Play(GaussianSquare(duration=736, amp=(-0.029056132593547085-0.0015248405400698456j), sigma=64, width=480), DriveChannel(3))), (1056, Play(GaussianSquare(duration=736, amp=(-0.2038155899362049+0.09386625089604642j), sigma=64, width=480), ControlChannel(8))), (1792, ShiftPhase(-1.5707963267948966, DriveChannel(3))), (1792, ShiftPhase(-1.5707963267948966, ControlChannel(3))), (1792, ShiftPhase(-1.5707963267948966, ControlChannel(8))), (1792, Play(Drag(duration=160, amp=(0.06110771919119891+0.0010527529746011833j), sigma=40, beta=-1.506044845111048), DriveChannel(3))), (1792, Play(Drag(duration=160, amp=(0.0007685896709848482-0.08769498979839149j), sigma=40, beta=0.5491988060501364), DriveChannel(5))), name="cx")
+    Qubit pair has no direct cross resonance!
+    Qubit pair has no direct cross resonance!
+    
+    target_3 as target with control 6
+    None
+    
+    target_3 as control with target 6
     None
     
 
 
 ```python
-# look for potential partner for qubit 1 (with a cx using Q1's frequency)
-
-other_qubits = [0,2]
-matching_partners_for_control_1 = []
-
-for oq in other_qubits:
-    uchan, cr_pulse = get_cr_chan_inst(1, oq)
-    inst_control1 = cx_pulse_instructions(control_1,oq)
-    inst_target1 = cx_pulse_instructions(oq,control_1)
-    if len(inst_control1) > len(inst_target1):
-        matching_partners_for_control_1.append((control_1,oq))
-    else:
-        print("Q1 as control len:",len(inst_control1),"\t", "Q1 as target len:",len(inst_target1))
-print("matching_partners_for_control_1:",matching_partners_for_control_1)
+# looks like we got a winner! qubit 5 as control gets driven with frequency of qubit 3
 ```
 
-    Q1 as control len: 11 	 Q1 as target len: 17
-    Q1 as control len: 11 	 Q1 as target len: 17
-    matching_partners_for_control_1: []
+
+```python
+uchan_t3c5, cr_pulse_t3c5 = get_cr_chan_inst(5, 3)
+params_CRpulse_t3c5 = cr_pulse_t3c5.parameters
+CX_t3c5_intrusctions = cx_pulse_instructions(5, 3)
+print(uchan_t3c5, cr_pulse_t3c5)
+```
+
+    ControlChannel(8) GaussianSquare(duration=736, amp=(0.2038155899362049-0.09386625089604639j), sigma=64, width=480)
     
 
-#### no matching partners! that's ok. we wait for results from CR CZ Experiment Notebook and calibrate it ourselfs.
+
+```python
+print(params_CRpulse_t3c5)
+```
+
+    {'duration': 736, 'amp': (0.2038155899362049-0.09386625089604639j), 'sigma': 64, 'width': 480}
+    
+
+
+```python
+print(CX_t3c5_intrusctions)
+```
+
+    Schedule((0, ShiftPhase(1.5707963267948966, DriveChannel(5))), (0, ShiftPhase(1.5707963267948966, ControlChannel(11))), (0, ShiftPhase(1.5707963267948966, ControlChannel(6))), (0, ShiftPhase(1.5707963267948966, ControlChannel(7))), (0, Play(Drag(duration=160, amp=(0.06110771919119891+0.0010527529746011833j), sigma=40, beta=-1.506044845111048), DriveChannel(3))), (0, Play(Drag(duration=160, amp=(-3.221456669098321e-17-0.17536793309664062j), sigma=40, beta=0.49130811784544975), DriveChannel(5))), (160, Play(GaussianSquare(duration=736, amp=(0.029056132593547085+0.001524840540069849j), sigma=64, width=480), DriveChannel(3))), (160, Play(GaussianSquare(duration=736, amp=(0.2038155899362049-0.09386625089604639j), sigma=64, width=480), ControlChannel(8))), (896, Play(Drag(duration=160, amp=(0.17536793309664062+0j), sigma=40, beta=0.49130811784544975), DriveChannel(5))), (1056, Play(GaussianSquare(duration=736, amp=(-0.029056132593547085-0.0015248405400698456j), sigma=64, width=480), DriveChannel(3))), (1056, Play(GaussianSquare(duration=736, amp=(-0.2038155899362049+0.09386625089604642j), sigma=64, width=480), ControlChannel(8))), name="cx")
+    
+
+
+```python
+cr_risefall = 128 # guess
+
+cr_am_t3c5 = cr_pulse_t3c5.amp
+cr_dur_t3c5 = cr_pulse_t3c5.duration
+cr_width_t3c5 = cr_dur_t3c5 - 2*cr_risefall
+
+reconstructed_CR_pulse_2 = GaussianSquare(duration=cr_dur_t3c5, amp=cr_am_t3c5, sigma=cr_risefall//2, width=cr_width_t3c5)
+reconstructed_CR_pulse_2.draw()
+
+with pulse.build(name="Compare CR Pulses: Reconstruct & cr_pulse_t3c5") as cr_test_sched:
+    pulse.play(cr_pulse_t3c5, uchan_t3c5)
+    pulse.play(reconstructed_CR_pulse_2, ControlChannel(2))
+
+cr_test_sched.draw(style=style)
+```
+
+
+
+
+    
+![png](output_26_0.png)
+    
+
+
+
+
+```python
+# looking goooood ❤️
+```
+
+
+```python
+# export the instructions for CR 1 and CR 2
+
+CR_Frequ_TQ1 = {"pulse":cr_pulse_c1t3, "params":params_CRpulse_c1t3}
+CR_Frequ_TQ3 = {"pulse":cr_pulse_t3c5, "params":params_CRpulse_t3c5}
+
+import json
+
+path = os.getcwd()+"CR_Frequ_TQ1.json"
+with open(path, 'w') as fp:
+    json.dump(CR_Frequ_TQ1, fp,default=str)
+
+path = os.getcwd()+"CR_Frequ_TQ3.json"
+with open(path, 'w') as fp:
+    json.dump(CR_Frequ_TQ3, fp,default=str)
+```
+
+
+```python
+
+```
