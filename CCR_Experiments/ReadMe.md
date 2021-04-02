@@ -1,5 +1,3 @@
-Readme
-
 # Cross cross resonance SWAP
 
 # ⓵ Find the first CR pulse for CCR: 
@@ -14,6 +12,8 @@ Readme
 - for each qubit pair the maintained CR pulse is only implemented in one direction (backend uses a lot of extra pulses to rotate qubits back and forth before and after CR, when CNOT is used in the other, not implemented, direction) 
     ☞ maby two extra lines of code here to switch directions of standard SWAP instead of actually rotating qubits?
 
+
+![image.png](attachment:image.png)
 
 
 ### CR Analysis
