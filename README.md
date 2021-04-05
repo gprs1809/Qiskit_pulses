@@ -9,6 +9,9 @@ https://github.com/qiskit-community/open-science-prize
 # Introduction to QuantumMechanics
 https://www.youtube.com/watch?v=Z1uoz_8dLH0&list=PL74Rel4IAsETUwZS_Se_P-fSEyEVQwni7&index=1
 
+# Introduction to qiskit
+https://pythonprogramming.net/quantum-computer-programming-tutorial/
+
 # Additional playlist:
 
 Optimizatid Quantum Compilation
