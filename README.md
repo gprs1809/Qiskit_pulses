@@ -1,5 +1,11 @@
 # ThisIsArt
 
+# Qiskit-Doc:
+https://qiskit.org/documentation/
+
+# Qiskit-TextBook:
+https://qiskit.org/textbook/ch-applications/vqe-molecules.html
+
 https://algassert.com/quirk#circuit={%22cols%22:[]}
 
 https://github.com/qiskit-community/open-science-prize
