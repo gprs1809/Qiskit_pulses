@@ -12,3 +12,6 @@ https://www.youtube.com/channel/UChr6LOWetV1pvA2uEAHMklg/playlists
 
 # The Fenymann Lecture 
 https://www.feynmanlectures.caltech.edu/III_toc.html
+
+# Einsteins spooky Distance 
+https://www.sciencemag.org/news/2018/04/einstein-s-spooky-action-distance-spotted-objects-almost-big-enough-see
