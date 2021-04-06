@@ -8,3 +8,7 @@ https://www.youtube.com/watch?v=MzRCDLre1b4
 
 # Math && Quantenmechanik course (german)
 https://www.youtube.com/channel/UChr6LOWetV1pvA2uEAHMklg/playlists
+
+
+# The Fenymann Lecture 
+https://www.feynmanlectures.caltech.edu/III_toc.html
