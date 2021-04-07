@@ -23,7 +23,6 @@ https://pythonprogramming.net/quantum-computer-programming-tutorial/
 https://turbulentflux.com/combining-physics-and-machine-learning-to-understand-multiphase-transient-flow/?gclid=EAIaIQobChMI7eeQiJPn7wIVm-W7CB2GAwAgEAEYASAAEgLx5_D_BwE
 
 # Additional playlist:
-
 Optimizatid Quantum Compilation
 https://www.youtube.com/watch?v=dtPaDmE89Yc
 
@@ -39,3 +38,6 @@ https://www.youtube.com/watch?t=186&v=BkHD0hsVZEg&feature=youtu.be
 
 Quantum Engineering of Superconducting Qubits:
 https://www.youtube.com/watch?v=aGAb-GbrvMU
+
+#Blogs
+https://quantum.country/
