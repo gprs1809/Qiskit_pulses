@@ -43,4 +43,5 @@ https://www.youtube.com/watch?v=aGAb-GbrvMU
 https://quantum.country/
 
 # Documents:
-https://arxiv.org/abs/2004.06755
+# Qiskit Pulse: Programming Quantum Computers Through the Cloud with Pulses
+https://arxiv.org/pdf/2004.06755.pdf
