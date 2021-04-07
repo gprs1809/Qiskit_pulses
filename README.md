@@ -41,3 +41,6 @@ https://www.youtube.com/watch?v=aGAb-GbrvMU
 
 #Blogs
 https://quantum.country/
+
+# Documents:
+https://arxiv.org/abs/2004.06755
