@@ -39,9 +39,12 @@ https://www.youtube.com/watch?t=186&v=BkHD0hsVZEg&feature=youtu.be
 Quantum Engineering of Superconducting Qubits:
 https://www.youtube.com/watch?v=aGAb-GbrvMU
 
-#Blogs
+# Blogs
 https://quantum.country/
 
 # Documents:
 # Qiskit Pulse: Programming Quantum Computers Through the Cloud with Pulses
 https://arxiv.org/pdf/2004.06755.pdf
+
+# Transmon:
+http://aqis-conf.org/2016/wp-content/uploads/2015/12/20160828langford_aqis_tutorial.pdf
